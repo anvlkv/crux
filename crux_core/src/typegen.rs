@@ -159,6 +159,7 @@ pub enum TypeGenError {
     PnpmNotFound(#[source] std::io::Error),
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Debug)]
 pub enum State {
     Registering(Tracer, Samples),

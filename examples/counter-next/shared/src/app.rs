@@ -55,6 +55,7 @@ pub enum Effect {
 }
 
 #[bridge]
+#[derive(Default)]
 pub struct App;
 
 impl crux_core::App for App {
@@ -155,7 +156,7 @@ mod tests {
     /// counter value from the web API
     #[test]
     fn get_counter() {
-        let app = App::default();
+        let app = App;
         let mut model = Model::default();
 
         // send a `Get` event to the app
@@ -220,14 +221,14 @@ mod tests {
         // the view should be updated
         let view = app.view(&model);
         assert_eq!(view.text, "1 (2023-01-01 00:00:00 UTC)");
-        assert_eq!(view.confirmed, true);
+        assert!(view.confirmed);
     }
     // ANCHOR_END: simple_tests
 
     // Test that an `Increment` event causes the app to increment the counter
     #[test]
     fn increment_counter() {
-        let app = App::default();
+        let app = App;
 
         // set up our initial model as though we've previously fetched the counter
         let mut model = Model {
@@ -305,7 +306,7 @@ mod tests {
     /// Test that a `Decrement` event causes the app to decrement the counter
     #[test]
     fn decrement_counter() {
-        let app = App::default();
+        let app = App;
 
         // set up our initial model as though we've previously fetched the counter
         let mut model = Model {
@@ -382,7 +383,7 @@ mod tests {
 
     #[test]
     fn server_sent_events() {
-        let app = App::default();
+        let app = App;
         let mut model = Model::default();
 
         // start a SSE subscription to watch for updates from the server

@@ -14,7 +14,7 @@ pub fn new() -> Core {
 }
 
 pub fn update(core: &Core, event: Event, render: WriteSignal<ViewModel>) {
-    log::debug!("event: {:?}", event);
+    log::debug!("event: {event:?}");
 
     for effect in core.process_event(event) {
         process_effect(core, effect, render);
